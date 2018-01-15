@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+
+body {
+  background-color: #F96A67;
+  color: #333332;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 45px;
+}
+
+.App-header {
+  background-color: #222;
+  padding: 10px;
+  color: #F0F1EE;
+  display: flex;
+  justify-content: center;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+/* BUTTON */
+
+button {
+  width: 80px;
+  padding: 5px;
+  margin: 5px;
+  background-color: #333332;
+  color: #F0F1EE;
+  border: none;
+  font-family: 'Julius Sans One', sans-serif;
+
+}

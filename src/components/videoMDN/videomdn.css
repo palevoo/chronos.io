@@ -1,0 +1,11 @@
+
+video {
+ height: 300px;
+}
+
+.VideoMdn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

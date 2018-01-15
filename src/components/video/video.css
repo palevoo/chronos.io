@@ -1,0 +1,18 @@
+
+video {
+ height: 300px;
+ vertical-align: top;
+ margin-bottom: 10px;
+}
+
+.Video {
+  background-color: #1FBCD3;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
+  margin-bottom: 10px;
+}

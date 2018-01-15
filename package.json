@@ -1,0 +1,25 @@
+{
+  "name": "timebomb",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "async": "^2.6.0",
+    "buffer": "^5.0.8",
+    "ipfs": "^0.27.6",
+    "jquery": "^3.2.1",
+    "material-ui": "^0.20.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.17",
+    "recordrtc": "^5.4.6",
+    "redux": "^3.7.2",
+    "web3": "github:ethereum/web3.js"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
