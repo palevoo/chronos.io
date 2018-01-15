@@ -1,31 +1,21 @@
 import React, { Component } from 'react';
 import RecordRTC from 'recordrtc';
-
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './video.css';
 
-function hasGetUserMedia() {
-  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia || navigator.msGetUserMedia);
-}
-
-if (hasGetUserMedia()) {
-  // Good to go!
-} else {
-  alert('getUserMedia() is not supported in your browser');
-}
+// function hasGetUserMedia() {
+//   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+//             navigator.mozGetUserMedia || navigator.msGetUserMedia);
+// }
+//
+// if (hasGetUserMedia()) {
+//   // Good to go!
+// } else {
+//   alert('getUserMedia() is not supported in your browser');
+// }
 
 // // Not showing vendor prefixes.
-navigator.getUserMedia({video: true, audio: false}, function(localMediaStream) {
-  const video = document.querySelector('video');
-  video.src = window.URL.createObjectURL(localMediaStream);
-
-  // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
-  // See crbug.com/110938.
-  video.onloadedmetadata = function(e) {
-    // Ready to go. Do some stuff.
-    console.log(e)
-  };
-}, errorCallback);
 
 //RecordRTC
 let recordRTC;
@@ -45,47 +35,86 @@ function errorCallback(error) {
     console.log(error);
 }
 
-function btnStartRecording () {
-  navigator.mediaDevices
-    .getUserMedia(mediaConstraints)
-    // .then(renderVideo)
-    .then(successCallback)
-    .catch(errorCallback);
-}
-
-function btnStopRecording () {
-  try {
-    recordRTC.stopRecording(function (audioVideoWebMURL) {
-        document.getElementById('video2').src = audioVideoWebMURL;
-        // video.src = audioVideoWebMURL;
-        let recordedBlob = recordRTC.getBlob();
-        recordRTC.getDataURL(function(dataURL) {
-          console.log(dataURL);
-        });
-    });
-  }
-  catch(err) {
-    console.log('No video recorded yet');
-  }
-};
-
 class Video extends Component {
+
+  constructor(props) {
+    super(props);
+    console.log('VIDEO CONSTRUCTOR', this.props);
+  }
+
+  startStream () {
+    window.navigator.getUserMedia({video: true, audio: false}, (localMediaStream) => {
+      const video = this.refs.video1;
+      video.src = window.URL.createObjectURL(localMediaStream);
+      video.onloadedmetadata = function(e) {
+        // Ready to go. Do some stuff.
+        console.log(e)
+      };
+    }, errorCallback);
+  }
+
+  componentDidMount() {
+    this.startStream();
+    console.log("VIDEO ON MOUNT",this.props);
+  }
+
+  btnStartRecording () {
+    window.navigator.mediaDevices
+      .getUserMedia(mediaConstraints)
+      .then(successCallback)
+      .catch(errorCallback);
+  }
+
+  btnStopRecording = () => {
+    console.log('WHAT THIS', this.props);
+    try {
+      recordRTC.stopRecording((audioVideoWebMURL) => {
+          // document.getElementById('video2').src = audioVideoWebMURL;
+          console.log(audioVideoWebMURL);
+          // console.log(this.props);
+          this.props.addVideo(audioVideoWebMURL);
+          console.log('RECRODED', this.props);
+
+          // // video.src = audioVideoWebMURL;
+          // let recordedBlob = recordRTC.getBlob();
+          // recordRTC.getDataURL(function(dataURL) {
+          //   // console.log(dataURL);
+          // console.log(this.state);
+          // console.log(this.props);
+        });
+      }
+
+    catch(err) {
+      console.log('No video recorded yet');
+    }
+  };
 
   render() {
     return (
       <div className="Video">
-        <p>Welcome to the <strong>Chronos</strong>, here you can travel in time, all you have to do is record a video message to future yourself.. P.S. apologies, but travelling back in time is still in development..</p>
         <div className="videos">
-          <video id="video1" autoPlay></video>
+          <video id="video1" ref="video1" autoPlay></video>
           <video id="video2" controls></video>
         </div>
         <div className="buttons">
-          <button id="record2" onClick={btnStartRecording}>Record</button>
-          <button id="pause2" onClick={btnStopRecording}>Pause</button>
+          <button id="record2" onClick={this.btnStartRecording}>Record</button>
+          <Link to="/recording">
+            <button id="pause2" onClick={this.btnStopRecording}>Pause</button>
+          </Link>
         </div>
       </div>
     );
   }
 }
 
-export default Video;
+const mapStateToProps = (state) => ({
+  videos: state.videos
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  addVideo: (video) => dispatch ({
+    type: 'ADD_VIDEO',
+    video: video
+  })
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Video);

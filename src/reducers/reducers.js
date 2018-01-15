@@ -1,24 +1,27 @@
 import { combineReducers } from 'redux';
 
-
 const initialState = {
-  component: 'entrance',
-  videos: {},
+  videos: [],
 }
 
-function renderComponent (state = initialState, action) {
-
-  return state;
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case 'ADD_VIDEO':
+      return {
+        ...state,
+        videos: {
+          ...state.videos,
+        }
+      };
+      break;
+    default:
+      return state;
+  }
 }
 
-function renderVideo (state = initialState, action) {
-
-  return state;
-}
-
-const reducers = combineReducers({
-  renderComponent,
-  renderVideo
-})
-
-export default reducers;
+// const reducers = combineReducers({
+//   // renderComponent,
+//   addVideo
+// })
+//
+// export default reducers;
