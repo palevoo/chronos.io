@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/timetraveler');
 
-const eventSchema = mongoose.Schema({
+const timeTravelerSchema = mongoose.Schema({
   email: String,
   date: Date,
   hash: String
 })
 
-const TimeTraveler = mongoose.model('TrimeTraveler', eventSchema);
+const TimeTraveler = mongoose.model('TrimeTraveler', timeTravelerSchema);
 
 module.exports = TimeTraveler;

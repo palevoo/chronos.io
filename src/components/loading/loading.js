@@ -30,7 +30,8 @@ class Loading extends Component {
         return;
       }
       let hash = `https://ipfs.io/ipfs/${result[0].hash}`
-      this.props.addHash(`https://ipfs.io/ipfs/${result[0].hash}`);
+      console.log(this.props.addHash);
+      this.props.addHash(hash);
       console.log(`Hash --> ${hash}`)
     })
     this.setState({
@@ -77,7 +78,7 @@ const mapDispatchToProps = (dispatch) => ({
   }),
   addHash: (hash) => dispatch ({
     type: 'ADD_HASH',
-    file: hash
+    hash: hash
   }),
 })
 

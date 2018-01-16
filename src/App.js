@@ -3,15 +3,14 @@ import logo from './infinity-symbol.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import Entrance from './components/entrance/entrance.js';
 import Video from './components/video/video.js';
 import Recording from './components/recording/recording.js';
-import User from './components/user/user.js';
 // import Ipfs from './components/ipfs/ipfs.js';
 // import Ether from './components/ether/ether.js';
-import Entrance from './components/entrance/entrance.js';
 import Loading from './components/loading/loading.js';
+import User from './components/user/user.js';
+import Confirmation from './components/confirmation/confirmation.js';
 
 class App extends Component {
   render() {
@@ -29,6 +28,7 @@ class App extends Component {
                 <Route path="/recording" component={Recording}/>
                 <Route path="/loading" component={Loading}/>
                 <Route path="/user" component={User}/>
+                <Route path="/happyending" component={Confirmation}/>
               </Switch>
             </div>
           </Router>

@@ -1,34 +1,39 @@
 import React, { Component } from 'react';
 import './user.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 
 class User extends Component {
 
   constructor(props) {
     super(props);
-    // this.emailInput = '';
   }
+
   state = {
-    emailInput: '',
+    postedToBackEnd: false,
   };
-  test(email) {
-    // console.log(email.input.value);
-    console.log(email.input.value);
-  }
+
   finalTouch(email, hash) {
-    console.log(email.input.value, hash);
+    console.log(email.value, hash);
     fetch('http://localhost:3003/happyending', {
       method:'POST',
       body: JSON.stringify({
-        email: email.input.value,
+        email: email.value,
         hash: hash
       }),
       headers: {
         'Content-Type': 'application/json'
       }
     })
+    this.setState({
+      postedToBackEnd: true
+    })
+  }
+
+  redirectIfNeeded() {
+    if (this.state.postedToBackEnd) {
+      return <Redirect to="/happyending" />
+    }
   }
 
   render() {
@@ -36,12 +41,10 @@ class User extends Component {
       <div className="User">
         <h2>Almost a time traveler</h2>
         <p>Reciever's Email</p>
-        <input id="email" type="text" ref={(input) => { this.state.emailInput = input; }} ></input>
+        <input id="email" type="text" ref={(input) => { this.emailInput = input }} ></input>
         <p>See you in <strong>10</strong> years</p>
-        {/* <input id="date" type="date" ref={(input) => { this.dateInput = input; }} ></input> */}
-        {/* <button id="upload" onClick={() => this.finalTouch(this.emailInput, this.props.hash)} >Teleport</button> */}
-        <button id="upload" onClick={() => this.test(this.emailInput)} >Test</button>
-
+        <button id="upload" onClick={() => this.finalTouch(this.emailInput, this.props.hash)} >Teleport</button>
+        {this.redirectIfNeeded()}
       </div>
     );
   }

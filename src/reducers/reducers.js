@@ -17,6 +17,7 @@ export default (state = initialState, action) => {
       };
       break;
     case 'ADD_HASH':
+      console.log('REDUCER', action.hash);
       return {
         ...state,
         hash: action.hash,
@@ -32,10 +33,3 @@ export default (state = initialState, action) => {
       return state;
   }
 }
-
-// const reducers = combineReducers({
-//   // renderComponent,
-//   addVideo
-// })
-//
-// export default reducers;

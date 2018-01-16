@@ -1,9 +1,9 @@
-const Event = require('../mongodb.js');
+const TimeTraveler = require('../mongodb.js');
 
 exports.addTimeTraveler = (req) => {
   TimeTraveler({
     email: req.body.email,
-    date: req.body.date,
+    date: Date.now(),
     hash: req.body.hash
   }).save()
   .then((e) => {
