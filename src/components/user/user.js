@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './user.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 function sendFile() {
   console.log('hello');
@@ -8,6 +9,13 @@ function sendFile() {
 
 class User extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <div className="User">
@@ -23,4 +31,25 @@ class User extends Component {
   }
 }
 
-export default User;
+const mapStateToProps = (state) => ({
+  video: state.video,
+  file: state.file,
+  hash: state.hash,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  addVideo: (video) => dispatch ({
+    type: 'ADD_VIDEO',
+    video: video
+  }),
+  addFile: (file) => dispatch ({
+    type: 'ADD_FILE',
+    file: file
+  }),
+  addHash: (hash) => dispatch ({
+    type: 'ADD_HASH',
+    file: hash
+  }),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

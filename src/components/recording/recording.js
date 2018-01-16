@@ -33,13 +33,18 @@ class Recording extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  video: state.video
+  video: state.video,
+  file: state.file,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   addVideo: (video) => dispatch ({
     type: 'ADD_VIDEO',
     video: video
+  }),
+  addFile: (file) => dispatch ({
+    type: 'ADD_FILE',
+    file: file
   })
 })
 

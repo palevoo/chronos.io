@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "async": "^2.6.0",
+    "blob-to-buffer": "^1.2.6",
     "buffer": "^5.0.8",
     "ipfs": "^0.27.6",
     "jquery": "^3.2.1",
@@ -15,6 +16,7 @@
     "react-scripts": "1.0.17",
     "recordrtc": "^5.4.6",
     "redux": "^3.7.2",
+    "to-arraybuffer": "^1.0.1",
     "web3": "github:ethereum/web3.js"
   },
   "scripts": {

@@ -3,17 +3,19 @@ import RecordRTC from 'recordrtc';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './video.css';
+var toBuffer = require('blob-to-buffer')
+var toArrayBuffer = require('to-arraybuffer')
 
-// function hasGetUserMedia() {
-//   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-//             navigator.mozGetUserMedia || navigator.msGetUserMedia);
-// }
-//
-// if (hasGetUserMedia()) {
-//   // Good to go!
-// } else {
-//   alert('getUserMedia() is not supported in your browser');
-// }
+function hasGetUserMedia() {
+  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+if (hasGetUserMedia()) {
+  // Good to go!
+} else {
+  alert('getUserMedia() is not supported in your browser');
+}
 
 //RecordRTC
 let recordRTC;
@@ -66,14 +68,15 @@ class Video extends Component {
   btnStopRecording = () => {
     try {
       recordRTC.stopRecording((audioVideoWebMURL) => {
-          // document.getElementById('video2').src = audioVideoWebMURL;
-          console.log(audioVideoWebMURL);
           this.props.addVideo(audioVideoWebMURL)
-          console.log('RECRODED', this.props);
-          // this.setState({redirect: true});
-          // let recordedBlob = recordRTC.getBlob();
-          // recordRTC.getDataURL(function(dataURL) {
-          //   // console.log(dataURL);
+          let blob = recordRTC.getBlob();
+          let file = new File([blob], 'recording.webm', {
+              type: 'video/webm'
+          });
+          toBuffer(blob, (err, buffer) => {
+            if (err) throw err;
+            this.props.addFile(toArrayBuffer(buffer));
+          })
           this.setState({
             videoEnded: true
           })
@@ -108,13 +111,18 @@ class Video extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  video: state.video
+  video: state.video,
+  file: state.file
 })
 
 const mapDispatchToProps = (dispatch) => ({
   addVideo: (video) => dispatch ({
     type: 'ADD_VIDEO',
     video: video
+  }),
+  addFile: (file) => dispatch ({
+    type: 'ADD_FILE',
+    file: file
   })
 })
 

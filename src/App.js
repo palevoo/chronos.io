@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Video from './components/video/video.js';
 import Recording from './components/recording/recording.js';
 import User from './components/user/user.js';
-import Ipfs from './components/ipfs/ipfs.js';
+// import Ipfs from './components/ipfs/ipfs.js';
 // import Ether from './components/ether/ether.js';
 import Entrance from './components/entrance/entrance.js';
 import Loading from './components/loading/loading.js';

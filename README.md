@@ -1,4 +1,4 @@
-A decentralized (almost) time travel app, where you can record video message and send it to the future.
+A distributed time travel app, where you can record video message and send it to the future.
 
 Video is recorded via WebRTC (RecordRTC), uploaded into infinity (IFPS), then url of video (hash) is returned to the user in 10 years time (method yet to be decided).
 
