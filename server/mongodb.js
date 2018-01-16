@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost/timetraveler');
 
 const timeTravelerSchema = mongoose.Schema({
   email: String,
-  date: Date,
+  date: Number,
   hash: String
 })
 

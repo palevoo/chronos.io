@@ -1,4 +1,5 @@
 const TimeTraveler = require('../mongodb.js');
+const _ = require('lodash');
 
 exports.addTimeTraveler = (req) => {
   TimeTraveler({
@@ -10,3 +11,20 @@ exports.addTimeTraveler = (req) => {
     res.status(201).send(e);
   });
 }
+
+let tenYears = 315400000010;
+let hour = 3600000;
+
+getTimeTravelers = async () => {
+  let res = TimeTraveler.find()
+    .then ((res) => {
+      console.log(res);
+      let readyOnes = _.filter(res, function(o) {
+        return (o.date + tenYears) < Date.now();
+      });
+      console.log('READY',readyOnes);
+      
+    })
+}
+
+setInterval(() => getTimeTravelers(), hour);
