@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RecordRTC from 'recordrtc';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './video.css';
 
@@ -14,8 +14,6 @@ import './video.css';
 // } else {
 //   alert('getUserMedia() is not supported in your browser');
 // }
-
-// // Not showing vendor prefixes.
 
 //RecordRTC
 let recordRTC;
@@ -31,15 +29,17 @@ function successCallback(stream) {
 }
 
 function errorCallback(error) {
-    // maybe another application is using the device
     console.log(error);
 }
 
 class Video extends Component {
 
+  state = {
+    videoEnded: false
+  }
+
   constructor(props) {
     super(props);
-    console.log('VIDEO CONSTRUCTOR', this.props);
   }
 
   startStream () {
@@ -47,7 +47,6 @@ class Video extends Component {
       const video = this.refs.video1;
       video.src = window.URL.createObjectURL(localMediaStream);
       video.onloadedmetadata = function(e) {
-        // Ready to go. Do some stuff.
         console.log(e)
       };
     }, errorCallback);
@@ -55,7 +54,6 @@ class Video extends Component {
 
   componentDidMount() {
     this.startStream();
-    console.log("VIDEO ON MOUNT",this.props);
   }
 
   btnStartRecording () {
@@ -66,41 +64,43 @@ class Video extends Component {
   }
 
   btnStopRecording = () => {
-    console.log('WHAT THIS', this.props);
     try {
       recordRTC.stopRecording((audioVideoWebMURL) => {
           // document.getElementById('video2').src = audioVideoWebMURL;
           console.log(audioVideoWebMURL);
-          // console.log(this.props);
-          this.props.addVideo(audioVideoWebMURL);
+          this.props.addVideo(audioVideoWebMURL)
           console.log('RECRODED', this.props);
-
-          // // video.src = audioVideoWebMURL;
+          // this.setState({redirect: true});
           // let recordedBlob = recordRTC.getBlob();
           // recordRTC.getDataURL(function(dataURL) {
           //   // console.log(dataURL);
-          // console.log(this.state);
-          // console.log(this.props);
-        });
+          this.setState({
+            videoEnded: true
+          })
+        })
       }
-
     catch(err) {
       console.log('No video recorded yet');
     }
   };
 
+  redirectIfNeeded() {
+    if (this.state.videoEnded) {
+      return <Redirect to="/recording" />
+    }
+  }
+
   render() {
+
     return (
       <div className="Video">
         <div className="videos">
           <video id="video1" ref="video1" autoPlay></video>
-          <video id="video2" controls></video>
         </div>
         <div className="buttons">
           <button id="record2" onClick={this.btnStartRecording}>Record</button>
-          <Link to="/recording">
-            <button id="pause2" onClick={this.btnStopRecording}>Pause</button>
-          </Link>
+          <button id="pause2" onClick={this.btnStopRecording}>Stop</button>
+          {this.redirectIfNeeded()}
         </div>
       </div>
     );
@@ -108,7 +108,7 @@ class Video extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  videos: state.videos
+  video: state.video
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -117,4 +117,5 @@ const mapDispatchToProps = (dispatch) => ({
     video: video
   })
 })
+
 export default connect(mapStateToProps, mapDispatchToProps)(Video);
