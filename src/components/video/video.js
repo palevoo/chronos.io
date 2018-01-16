@@ -35,10 +35,6 @@ class Video extends Component {
     videoEnded: false
   }
 
-  constructor(props) {
-    super(props);
-  }
-
   startStream () {
     window.navigator.getUserMedia(mediaConstraints, (localMediaStream) => {
       const video = this.refs.video;
@@ -87,8 +83,8 @@ class Video extends Component {
 
   render() {
     return (
-      <div className="Video">
-          <video ref="video" autoPlay></video>
+      <div className="Video, container">
+          <video ref="video" autoPlay muted></video>
         <div className="buttons">
           <button onClick={this.btnStartRecording}>Record</button>
           <button onClick={this.btnStopRecording}>Stop</button>

@@ -41,7 +41,7 @@
 //
 //   render() {
 //     return (
-//       <div className="Ipfs">
+//       <div className="Ipfs, container">
 //         <p>IPFS File</p>
 //         <input name="image"  type="file" id="file"></input>
 //         <button id="upload" onClick={sendFile}>Upload</button>

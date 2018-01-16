@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
 
 body {
-  /* background-color: #F96A67; */
   color: #333332;
   font-family: 'Julius Sans One', sans-serif;
 }
@@ -30,6 +29,12 @@ body {
   font-size: large;
 }
 
+video {
+ width: 65%;
+ vertical-align: top;
+ margin-bottom: 10px;
+}
+
 /* BUTTON */
 
 button {
@@ -40,5 +45,25 @@ button {
   color: #F0F1EE;
   border: none;
   font-family: 'Julius Sans One', sans-serif;
+}
 
+.buttons {
+  margin-bottom: 10px;
+}
+
+/* SHARED */
+
+.container {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #BBBBBB;
+  margin: auto;
+  margin-top: 10px;
+  padding-top: 40px;
+  padding-bottom: 15px;
+  min-height: 300px;
+  margin-top: 40px;
 }

@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 
 class User extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     postedToBackEnd: false,
   };
@@ -38,11 +34,10 @@ class User extends Component {
 
   render() {
     return (
-      <div className="User">
+      <div className="User, container">
         <h2>Almost a time traveler</h2>
         <p>Reciever's Email</p>
         <input id="email" type="text" ref={(input) => { this.emailInput = input }} ></input>
-        <p>See you in <strong>10</strong> years</p>
         <button id="upload" onClick={() => this.finalTouch(this.emailInput, this.props.hash)} >Teleport</button>
         {this.redirectIfNeeded()}
       </div>

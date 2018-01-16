@@ -101,7 +101,7 @@
 //
 //   render() {
 //     return (
-//       <div className="Ether">
+//       <div className="Ether, container">
 //         <p>Ethereum Wallet</p>
 //         <img id="loader" src={loader}></img>
 //         <p id="name">Name</p>

@@ -5,20 +5,18 @@ import './recording.css';
 
 class Recording extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
-      <div className="Recording">
+      <div className="Recording, container">
         <video id="recording" ref="recoding" controls src={this.props.video}></video>
-        <Link to="/video">
-          <button id="record">Try Again</button>
-        </Link>
-        <Link to="/loading">
-          <button id="upload">Save</button>
-        </Link>
+        <div className="buttons">
+          <Link to="/video">
+            <button id="record">Try Again</button>
+          </Link>
+          <Link to="/loading">
+            <button id="upload">Save</button>
+          </Link>
+        </div>
       </div>
     );
   }

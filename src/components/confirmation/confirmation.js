@@ -6,7 +6,7 @@ class Confirmation extends Component {
 
   render() {
     return (
-      <div className="Confirmation">
+      <div className="Confirmation, container">
         <h2>Congratulations!</h2>
         <img src={thefuture} alt="Back to the Future"></img>
         <p>See you in 10 years</p>

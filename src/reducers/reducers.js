@@ -11,13 +11,11 @@ export default (state = initialState, action) => {
         ...state,
         video: action.video,
       };
-      break;
     case 'ADD_HASH':
       return {
         ...state,
         hash: action.hash,
       };
-      break;
     case 'ADD_FILE':
       return {
         ...state,

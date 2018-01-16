@@ -12,10 +12,6 @@ node.once('ready', () => console.log('IPFS node is ready'))
 
 class Loading extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     IPFS: false,
   }
@@ -42,13 +38,13 @@ class Loading extends Component {
 
   redirectIfNeeded() {
     if (this.state.IPFS) {
-      return <Redirect to="/user" />
+      return <Redirect to="/teleport" />
     }
   }
 
   render() {
     return (
-      <div className="Loading">
+      <div className="Loading, container">
         <p>Patience is true virtue</p>
         <img id="loader" src={loader} alt="loader"></img>
         <p>Uploading to the IPFS</p>
