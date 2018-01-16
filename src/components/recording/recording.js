@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-import RecordRTC from 'recordrtc';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import './recording.css';
 
 class Recording extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props);
-  }
-
-  componentDidMount() {
-    // this.startStream();
-    console.log("RECORDING ON MOUNT",this.props);
   }
 
   render() {
@@ -34,18 +26,6 @@ class Recording extends Component {
 
 const mapStateToProps = (state) => ({
   video: state.video,
-  file: state.file,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  addVideo: (video) => dispatch ({
-    type: 'ADD_VIDEO',
-    video: video
-  }),
-  addFile: (file) => dispatch ({
-    type: 'ADD_FILE',
-    file: file
-  })
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Recording);
+export default connect(mapStateToProps)(Recording);

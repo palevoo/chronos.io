@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import RecordRTC from 'recordrtc';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './video.css';
-var toBuffer = require('blob-to-buffer')
-var toArrayBuffer = require('to-arraybuffer')
+const toBuffer = require('blob-to-buffer')
+const toArrayBuffer = require('to-arraybuffer')
+
+let recordRTC;
+const mediaConstraints = { video: true, audio: true };
+const recordingOptions = {mimeType: 'video/webm;codecs=vp9', bitsPerSecond: 128000 };
 
 function hasGetUserMedia() {
   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -12,18 +16,9 @@ function hasGetUserMedia() {
 }
 
 if (hasGetUserMedia()) {
-  // Good to go!
 } else {
   alert('getUserMedia() is not supported in your browser');
 }
-
-//RecordRTC
-let recordRTC;
-let video = document.querySelector('video');
-let video1 = document.getElementById('video1');
-
-const mediaConstraints = { video: true, audio: true };
-const recordingOptions = {mimeType: 'video/webm\;codecs=vp9', bitsPerSecond: 128000 };
 
 function successCallback(stream) {
     recordRTC = RecordRTC(stream, recordingOptions);
@@ -45,8 +40,8 @@ class Video extends Component {
   }
 
   startStream () {
-    window.navigator.getUserMedia({video: true, audio: false}, (localMediaStream) => {
-      const video = this.refs.video1;
+    window.navigator.getUserMedia(mediaConstraints, (localMediaStream) => {
+      const video = this.refs.video;
       video.src = window.URL.createObjectURL(localMediaStream);
       video.onloadedmetadata = function(e) {
         console.log(e)
@@ -70,9 +65,6 @@ class Video extends Component {
       recordRTC.stopRecording((audioVideoWebMURL) => {
           this.props.addVideo(audioVideoWebMURL)
           let blob = recordRTC.getBlob();
-          let file = new File([blob], 'recording.webm', {
-              type: 'video/webm'
-          });
           toBuffer(blob, (err, buffer) => {
             if (err) throw err;
             this.props.addFile(toArrayBuffer(buffer));
@@ -94,15 +86,12 @@ class Video extends Component {
   }
 
   render() {
-
     return (
       <div className="Video">
-        <div className="videos">
-          <video id="video1" ref="video1" autoPlay></video>
-        </div>
+          <video ref="video" autoPlay></video>
         <div className="buttons">
-          <button id="record2" onClick={this.btnStartRecording}>Record</button>
-          <button id="pause2" onClick={this.btnStopRecording}>Stop</button>
+          <button onClick={this.btnStartRecording}>Record</button>
+          <button onClick={this.btnStopRecording}>Stop</button>
           {this.redirectIfNeeded()}
         </div>
       </div>

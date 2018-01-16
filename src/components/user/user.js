@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './user.css';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class User extends Component {
@@ -51,24 +51,7 @@ class User extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  video: state.video,
-  file: state.file,
-  hash: state.hash,
+  hash: state.hash
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  addVideo: (video) => dispatch ({
-    type: 'ADD_VIDEO',
-    video: video
-  }),
-  addFile: (file) => dispatch ({
-    type: 'ADD_FILE',
-    file: file
-  }),
-  addHash: (hash) => dispatch ({
-    type: 'ADD_HASH',
-    file: hash
-  }),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default connect(mapStateToProps)(User);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './infinity-symbol.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Entrance from './components/entrance/entrance.js';
 import Video from './components/video/video.js';
@@ -27,7 +27,7 @@ class App extends Component {
                 <Route path="/video" component={Video}/>
                 <Route path="/recording" component={Recording}/>
                 <Route path="/loading" component={Loading}/>
-                <Route path="/user" component={User}/>
+                <Route path="/teleport" component={User}/>
                 <Route path="/happyending" component={Confirmation}/>
               </Switch>
             </div>

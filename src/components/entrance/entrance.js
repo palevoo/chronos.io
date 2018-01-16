@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 
 class Entrance extends Component {
 
-  constructor(props) {
-    super(props);
-    console.log('PROPS',props);
-  }
-
   render() {
     return (
       <div className="Entrance">

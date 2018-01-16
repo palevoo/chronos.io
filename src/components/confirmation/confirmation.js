@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import thefuture from '../../giphy.gif'
+import thefuture from '../../giphy.gif';
 import './confirmation.css';
 
 class Confirmation extends Component {
@@ -8,7 +8,7 @@ class Confirmation extends Component {
     return (
       <div className="Confirmation">
         <h2>Congratulations!</h2>
-        <img src={thefuture}></img>
+        <img src={thefuture} alt="Back to the Future"></img>
         <p>See you in 10 years</p>
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './loading.css';
 import loader from '../../Blocks.svg';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const IPFS = require('ipfs');
@@ -14,7 +14,6 @@ class Loading extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props);
   }
 
   state = {
@@ -22,7 +21,6 @@ class Loading extends Component {
   }
 
   sendFile() {
-    console.log('Uploading recording to IPFS');
     const buf = Buffer(this.props.file) // Convert data into buffer
     node.files.add(buf, (err, result) => { // Upload buffer to IPFS
       if(err) {
@@ -30,7 +28,6 @@ class Loading extends Component {
         return;
       }
       let hash = `https://ipfs.io/ipfs/${result[0].hash}`
-      console.log(this.props.addHash);
       this.props.addHash(hash);
       console.log(`Hash --> ${hash}`)
     })
@@ -53,7 +50,7 @@ class Loading extends Component {
     return (
       <div className="Loading">
         <p>Patience is true virtue</p>
-        <img id="loader" src={loader}></img>
+        <img id="loader" src={loader} alt="loader"></img>
         <p>Uploading to the IPFS</p>
         {this.redirectIfNeeded()}
       </div>
@@ -62,24 +59,15 @@ class Loading extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  video: state.video,
   file: state.file,
   hash: state.hash,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  addVideo: (video) => dispatch ({
-    type: 'ADD_VIDEO',
-    video: video
-  }),
-  addFile: (file) => dispatch ({
-    type: 'ADD_FILE',
-    file: file
-  }),
   addHash: (hash) => dispatch ({
     type: 'ADD_HASH',
     hash: hash
-  }),
+  })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loading);
