@@ -12,7 +12,7 @@ class Entrance extends Component {
   render() {
     return (
       <div className="Entrance">
-        <p>Welcome to the Chronos.io, a time travel app.</p>
+        <h2>Welcome to the Chronos.io, a time travel app</h2>
         <p>Designed in a decentralized manner, allowing you to record video message, upload it to IPFS</p>
         <p>Ethereum smart contract will make sure, that you cannot retrieve it before the teleportation date.</p>
         <Link to="/video">
