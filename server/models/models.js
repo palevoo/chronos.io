@@ -14,17 +14,31 @@ exports.addTimeTraveler = (req) => {
 
 let tenYears = 315400000010;
 let hour = 3600000;
+//
+// getTimeTravelers = async () => {
+//   let res = TimeTraveler.find()
+//     .then ((res) => {
+//       console.log(res);
+//       let readyOnes = _.filter(res, function(o) {
+//         return (o.date + tenYears) < Date.now();
+//       });
+//       console.log('READY',readyOnes);
+//
+//     })
+// }
 
-getTimeTravelers = async () => {
-  let res = TimeTraveler.find()
-    .then ((res) => {
-      console.log(res);
-      let readyOnes = _.filter(res, function(o) {
-        return (o.date + tenYears) < Date.now();
-      });
-      console.log('READY',readyOnes);
-      
-    })
+exports.getVideos = async (req, res) => {
+  let events = await TimeTraveler.find()
+    .then((results) => {
+      res.status(200).send(results);
+    });
 }
 
-setInterval(() => getTimeTravelers(), hour);
+deleteEvents = async (req, res) => {
+  let events = await TimeTraveler.remove()
+    .then((results) => {
+      res.status(200).send("Database has been cleared");
+    });
+}
+deleteEvents();
+// setInterval(() => getTimeTravelers(), hour);

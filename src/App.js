@@ -3,6 +3,7 @@ import logo from './infinity-symbol.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Entrance from './components/entrance/entrance.js';
+import VideoList from './components/videolist/videolist.js';
 import Video from './components/video/video.js';
 import Recording from './components/recording/recording.js';
 // import Ipfs from './components/ipfs/ipfs.js';
@@ -23,6 +24,7 @@ class App extends Component {
             <div className="main">
               <Switch>
                 <Route exact path="/" component={Entrance}/>
+                <Route path="/videolist" component={VideoList}/>
                 <Route path="/video" component={Video}/>
                 <Route path="/recording" component={Recording}/>
                 <Route path="/loading" component={Loading}/>
@@ -31,8 +33,8 @@ class App extends Component {
               </Switch>
             </div>
           </Router>
-          <footer className="App-footer">        
-            <a class="github-button" href="https://github.com/palevoo/chronos.io/issues" data-show-count="true" aria-label="Issue palevoo/chronos.io on GitHub">Issue</a>
+          <footer className="App-footer">
+            <a className="github-button" href="https://github.com/palevoo/chronos.io/issues" data-show-count="true" aria-label="Issue palevoo/chronos.io on GitHub">Issue</a>
           </footer>
         </div>
     );

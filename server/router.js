@@ -6,5 +6,8 @@ router
   .post('/happyending', (req, res) => {
     controller.addTimeTraveler(req);
   })
+  .get('/videos', (req, res) => {
+    controller.getVideos(req, res)
+  })
 
 module.exports = router;

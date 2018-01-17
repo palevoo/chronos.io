@@ -26,10 +26,16 @@ class Loading extends Component {
       let hash = `https://ipfs.io/ipfs/${result[0].hash}`
       this.props.addHash(hash);
       console.log(`Hash --> ${hash}`)
+      fetch(hash)
+      .then(data => {
+        this.setState({
+          IPFS: true
+        })
+      })
+      .catch(e => console.error(e))
+
     })
-    this.setState({
-      IPFS: true
-    })
+
   }
 
   componentDidMount() {
