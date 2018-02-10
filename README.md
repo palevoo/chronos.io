@@ -1,7 +1,8 @@
 # Chronos.io
 
-A distributed time travel app, where you can record video message and send it to the future.
 ![Home Page](homepage.png)
+
+A distributed time travel app, where you can record video message and send it to the future.
 * [Link to video demo](https://ipfs.io/ipfs/QmctXuva4qutFTyj4Q9N8tb4efXsVjQbeLwrdHF9nVHwU4)
 
 ## Getting Started
@@ -58,4 +59,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * Create Ethereum smart contract to which you can send funds with hash of video location, which would only unfreeze in given period.
 * Create an oracle on EVM (Ethereum Virtual Machine) to query smart contract (CRON)
-* Improve UI (add clock, visuals and design)  
+* Improve UI (add clock, visuals and design)   
