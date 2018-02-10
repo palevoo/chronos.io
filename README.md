@@ -2,7 +2,7 @@
 
 A distributed time travel app, where you can record video message and send it to the future.
 
-![Chronos.io on IPFS](https://ipfs.io/ipfs/QmctXuva4qutFTyj4Q9N8tb4efXsVjQbeLwrdHF9nVHwU4)
+* [Link to video demo](https://ipfs.io/ipfs/QmctXuva4qutFTyj4Q9N8tb4efXsVjQbeLwrdHF9nVHwU4)
 
 ## Getting Started
 
