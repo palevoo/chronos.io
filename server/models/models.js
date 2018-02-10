@@ -40,5 +40,5 @@ deleteEvents = async (req, res) => {
       res.status(200).send("Database has been cleared");
     });
 }
-deleteEvents();
+// deleteEvents();
 // setInterval(() => getTimeTravelers(), hour);
