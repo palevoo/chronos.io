@@ -30,6 +30,7 @@ Have fun
 ## Built With Love and:
 
 * [React](https://reactjs.org/) - Frontend Web Framework
+* [Redux](https://redux.js.org/) - Clear state of mind
 * [IPFS](https://ipfs.io/) - Inter Planetary File System to store videos forever
 * [WebRTC](https://webrtc.org/) - RecordRTC library to record live streams from user's devices
 * [Express](http://expressjs.com/) - Back end + runs CRON to send recordings
