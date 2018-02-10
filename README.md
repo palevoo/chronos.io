@@ -2,7 +2,7 @@
 
 A distributed time travel app, where you can record video message and send it to the future.
 
-![Chronos.io on IPFS](https://ipfs.io/ipfs/QmctXuva4qutFTyj4Q9N8tb4efXsVjQbeLwrdHF9nVHwU4)
+* [Link to video demo](https://ipfs.io/ipfs/QmctXuva4qutFTyj4Q9N8tb4efXsVjQbeLwrdHF9nVHwU4)
 
 ## Getting Started
 
@@ -29,11 +29,11 @@ Have fun
 
 ## Built With Love and:
 
-* [React](http://www.dropwizard.io/1.0.2/docs/) - Frontend Web Framework
-* [IPFS](https://maven.apache.org/) - Inter Planetary File System to store videos forever
-* [WebRTC](https://rometools.github.io/rome/) - RecordRTC library to record live streams from user's devices
-* [Express](https://rometools.github.io/rome/) - Back end + runs CRON to send recordings
-* [MongoDB](https://rometools.github.io/rome/) - Database to store user emails and ipfs hashes
+* [React](https://reactjs.org/) - Frontend Web Framework
+* [IPFS](https://ipfs.io/) - Inter Planetary File System to store videos forever
+* [WebRTC](https://webrtc.org/) - RecordRTC library to record live streams from user's devices
+* [Express](http://expressjs.com/) - Back end + runs CRON to send recordings
+* [MongoDB](https://www.mongodb.com/) - Database to store user emails and IFPS hashes
 
 ## Running the tests
 
