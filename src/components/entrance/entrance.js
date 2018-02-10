@@ -9,7 +9,7 @@ class Entrance extends Component {
     return (
       <div className="Entrance, container">
         <h2>Welcome to the Chronos.io, a time travel app</h2>
-        <p>Designed in a decentralized manner, allowing you to record a video message, and upload it to the IPFS. Ethereum smart contract will make sure, that you cannot retrieve it before the teleportation date.</p>
+        <p>Designed in a decentralized manner, allowing you to record a video message, and upload it to the IPFS.</p>
         <p>Join this week's Time Travelers:</p>
         <VideoList />
         <Link to="/video">
