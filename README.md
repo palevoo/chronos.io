@@ -2,11 +2,11 @@
 
 A distributed time travel app, where you can record video message and send it to the future.
 
-![Chronos.io in action](presi.gif)
+![Chronos.io on IPFS](https://ipfs.io/ipfs/QmctXuva4qutFTyj4Q9N8tb4efXsVjQbeLwrdHF9nVHwU4)
 
 ## Getting Started
 
-Fork this repo, clone your fork.
+Fork it, clone it, run it.
 
 ### Installing
 
@@ -21,8 +21,8 @@ npm start
 In server folder
 ```
 npm install
-node or nodemon index.js
 mongod
+node or nodemon index.js
 ```
 
 Have fun
